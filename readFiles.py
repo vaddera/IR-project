@@ -17,22 +17,27 @@ textFiles = ['docs\AbrahamLincoln.txt','docs\AndrewJackson.txt','docs\AndrewJohn
              'docs\RichardNixon.txt','docs\RonaldReagan.txt','docs\RutherfordHayes.txt','docs\TheodoreRoosevelt.txt','docs\ThomasJefferson.txt','docs\UlyssesGrant.txt',
              'docs\WarrenHarding.txt','docs\WilliamHenryHarrison.txt','docs\WilliamMcKinley.txt','docs\WilliamTaft.txt','docs\WoodrowWilson.txt','docs\ZacharyTaylor.txt']
 
+lengthDocs = []
+
 def readFile(file_input, matchingWord):
     
     with open(file_input,'r') as content_file:
         content = content_file.read()
         words = re.split("\W+",content.lower())
-        
-    words_count = collections.Counter(words)
 
-    return int(words_count[matchingWord])
+    wordsCount = len(words)        
+    termsCount = collections.Counter(words)
+
+    return (int(wordsCount),int(termsCount[matchingWord]))
 
 '''---------------------------------------------------------------------
     Here the function is called and tested for each of the documents:
 ------------------------------------------------------------------------'''
 
 for i in range(len(textFiles)):
-    newCount = readFile(textFiles[i],'the')
+    lenDoc, newCount = readFile(textFiles[i],'the')
+    lengthDocs.append(lenDoc)
     count = count + newCount
+    print 'Length of the ' + str(i + 1) + ' document is ' + str(lengthDocs[i])
     
 print 'Number of the counted specified words: ' + str(count)
