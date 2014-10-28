@@ -25,15 +25,32 @@ def readFile(file_input, matchingWord):
     #termsCount = 0
     
     with open(file_input,'r') as content_file:
+        #lineContent = content_file.readlines()
         content = content_file.read()
         words = re.split("\W+",content.lower())
-        #if matchingWord in content:
-            #termsCount = termsCount + 1
+        keyword = re.split("\W+",matchingWord.lower())
+        
+        if len(keyword) > 1:
+            wordsCount = len(words)
+            termsCount = 0
+            for i in range(len(words)):
+                if words[i] == keyword[0] and words[i+1] == keyword[1]:
+                    termsCount = termsCount + 1
+            return (int(wordsCount),termsCount)
+        else:
+            wordsCount = len(words)
+            evaluation = "".join(keyword)
+            termsCount = collections.Counter(words)
+            return (int(wordsCount),int(termsCount[evaluation]))
+        #words = re.split("\W+",content.join('civil war'))
+        #for matchingWord in lineContent:
+            #termsCount += termsCount
 
-    wordsCount = len(words)        
-    termsCount = collections.Counter(words)
+    #wordsCount = len(words)        
+    #termsCount = collections.Counter(words)
+    #print keyword
 
-    return (int(wordsCount),int(termsCount[matchingWord]))
+    #return (int(wordsCount),int(termsCount[evaluation]))
     #return (int(wordsCount),termsCount)
 
 '''---------------------------------------------------------------------
@@ -41,7 +58,7 @@ def readFile(file_input, matchingWord):
 ------------------------------------------------------------------------'''
 '''
 for i in range(len(textFiles)):
-    lenDoc, newCount = readFile(textFiles[i],'the')
+    lenDoc, newCount = readFile(textFiles[i],'civil war')
     lengthDocs.append(lenDoc)
     count = count + newCount
     
@@ -54,4 +71,9 @@ for i in range(len(textFiles)):
     
 print 'Number of the counted specified words: ' + str(count)
 print 'Keyword was found in ' + str(foundInDocument) + ' documents.'
+'''
+'''# A test for an individual document:
+lenDoc, newCount = readFile(textFiles[0], 'civil war')
+print 'The length of the document: ' + str(lenDoc)
+print 'The number of matching strings: ' + str(newCount)
 '''
