@@ -11,7 +11,6 @@ import math
 '''---------------------------------------------------------------
     Variable initialization
 ------------------------------------------------------------------'''
-
 keywords = ['adams','lincoln','president','assassinated president','great president','first president','re-elected','second president','impeached','general','world war',
             'founding','democrat','republican','independent','congress','law']
 textFiles = ['docs\AbrahamLincoln.txt','docs\AndrewJackson.txt','docs\AndrewJohnson.txt','docs\BarackObama.txt','docs\BenjaminHarrison.txt','docs\BillClinton.txt',
@@ -39,6 +38,7 @@ def BM25():
     idfList = []
     scores = []
     preScore = []
+    #result = []
     
     for i in range(len(keywords)):
         for j in range(len(textFiles)):
@@ -79,11 +79,19 @@ def BM25():
         preScore = [] # Clearing preScore list in order to not add old values
 
         
-    print scores
+    #print scores
+    
+    toBeOrdered = zip(textFiles,scores)
+    
+    #print toBeOrdered
+    
+    result = sorted(toBeOrdered, key=lambda toBeOrdered: toBeOrdered[1],reverse=True)
+
+    return result
     
 '''---------------------------------------------------------------
     Running algorithms:
 ------------------------------------------------------------------'''
     
-BM25()
-    
+out = BM25()
+print out 
