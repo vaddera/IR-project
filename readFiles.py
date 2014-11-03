@@ -31,12 +31,22 @@ def readFile(file_input, matchingWord):
         keyword = re.split("\W+",matchingWord.lower())
         
         if len(keyword) > 1:
-            wordsCount = len(words)
-            termsCount = 0
-            for i in range(len(words)):
-                if words[i] == keyword[0] and words[i+1] == keyword[1]:
-                    termsCount = termsCount + 1
-            return (int(wordsCount),termsCount)
+            if len(keyword) == 2:
+                wordsCount = len(words)
+                termsCount = 0
+                for i in range(len(words)):
+                    if words[i] == keyword[0] and words[i+1] == keyword[1]:
+                        termsCount = termsCount + 1
+                return (int(wordsCount),termsCount)
+            elif len(keyword) == 3:
+                wordsCount = len(words)
+                termsCount = 0
+                for i in range(len(words)):
+                    if words[i] == keyword[0] and words[i+1] == keyword[1] and words[i+2] == keyword[2]:
+                        termsCount = termsCount + 1
+                return(int(wordsCount),termsCount)
+            else:
+                print 'Error with the keyword handler for multiple keywords!'
         else:
             wordsCount = len(words)
             evaluation = "".join(keyword)

@@ -11,7 +11,7 @@ import math
 '''---------------------------------------------------------------
     Variable initialization
 ------------------------------------------------------------------'''
-keywords = ['adams','lincoln','president','assassinated president','great president','first president','re-elected','second president','impeached','general','world war',
+keywords = ['adams','lincoln','president','assassinated president','great president','first president','civil war president','second president','impeached','general','world war',
             'founding','democrat','republican','independent','congress','law']
 textFiles = ['docs\AbrahamLincoln.txt','docs\AndrewJackson.txt','docs\AndrewJohnson.txt','docs\BarackObama.txt','docs\BenjaminHarrison.txt','docs\BillClinton.txt',
              'docs\CalvinCoolidge.txt','docs\ChesterArthur.txt','docs\DwightEisenhower.txt','docs\FranklinDRoosevelt.txt','docs\FranklinPierce.txt','docs\GeorgeBush.txt',
